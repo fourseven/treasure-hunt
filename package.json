@@ -1,0 +1,12 @@
+{
+  "name": "treasure-hunt",
+  "version": "0.0.0",
+  "dependencies": {
+    "twit":"~1.0.0"
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
