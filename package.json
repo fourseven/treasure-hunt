@@ -2,7 +2,8 @@
   "name": "treasure-hunt",
   "version": "0.0.0",
   "dependencies": {
-    "twit":"~1.0.0"
+    "twit": "~1.0.0",
+    "winston": "~0.7.1"
   },
   "devDependencies": {
   },
