@@ -2,6 +2,7 @@ var Twit = require('twit');
 var config = require('./config.json');
 var logger = require('./logger');
 var geocoder = require('geocoder');
+var _ = require('underscore');
 
 var twitter = new Twit(config.twitter);
 
@@ -27,7 +28,15 @@ var create_tweet_for_geo = function (tweet) {
       logger.error(err);
       return err;
     }
-    logger.info("Geo data returned was: " + data);
+    var user = tweet.user;
+    var street = _.find(_.find(data.results, function (item) { return item.types == "street_address"; }).address_components, function (item) { return item.types[0] == "route"; }).long_name;
+    var status = "@" + user.screen_name + ", how is " + street + "?";
+    twitter.post('statuses/update', { status: status, in_reply_to_status_id: tweet.id }, function(err, reply) {
+      if (err) {
+        logger.error(err);
+        return err;
+      }
+    });
   });
 };
 
